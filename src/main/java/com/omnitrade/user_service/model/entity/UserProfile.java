@@ -1,5 +1,6 @@
 package com.omnitrade.user_service.model.entity;
 
+import com.omnitrade.user_service.model.enums.UserRole;
 import com.omnitrade.user_service.model.enums.UserStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -7,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -26,6 +28,7 @@ import java.util.UUID;
                 @Index(name = "idx_city", columnList = "city")
         }
 )
+@Data
 public class UserProfile {
 
     @Id
@@ -42,8 +45,9 @@ public class UserProfile {
     private String lastName;
 
     @Email(message = "Please provide a valid email address")
-    @Column(nullable = true, unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
+    private UserRole role;
 
     @Column(nullable = true, unique = true)
     private String phone;
