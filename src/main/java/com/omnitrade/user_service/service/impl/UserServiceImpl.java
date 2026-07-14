@@ -1,5 +1,6 @@
 package com.omnitrade.user_service.service.impl;
 
+import com.omnitrade.user_service.exception.DuplicateEmailException;
 import com.omnitrade.user_service.model.dto.CreateUserRequest;
 import com.omnitrade.user_service.model.dto.UserResponseDTO;
 import com.omnitrade.user_service.model.entity.UserProfile;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
     public UserResponseDTO createUser(CreateUserRequest request) {
         if (request.getEmail() != null && !request.getEmail().isEmpty() &&
                 repository.existsByEmail(request.getEmail())) {
-           // throw new DuplicateEmailException(request.getEmail());
+           throw new DuplicateEmailException(request.getEmail());
         }
 
         UserProfile userProfile = UserProfile.builder()
