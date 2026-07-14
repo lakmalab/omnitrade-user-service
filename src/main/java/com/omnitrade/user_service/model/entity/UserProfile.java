@@ -52,6 +52,8 @@ public class UserProfile {
     private String profileImage;
     private Double rating;
     private int reviewCount;
+    private Integer totalSales = 0;
+    private Integer totalTrades = 0;
 
     @CreationTimestamp
     @Column(updatable = false)
