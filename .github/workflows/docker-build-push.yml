@@ -8,8 +8,8 @@ on:
       - 'v*'
 
 env:
-  DOCKER_IMAGE_NAME: user-service
-  DOCKER_HUB_REPO: lakmalab
+  DOCKER_IMAGE_NAME: omnitrade-user-service
+  DOCKER_HUB_REPO: omnitrade
 
 jobs:
   build-and-test:
