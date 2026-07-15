@@ -9,7 +9,7 @@ on:
 
 env:
   DOCKER_IMAGE_NAME: omnitrade-user-service
-  DOCKER_HUB_REPO: omnitrade
+  DOCKER_HUB_REPO: lakmalab
 
 jobs:
   build-and-test:
