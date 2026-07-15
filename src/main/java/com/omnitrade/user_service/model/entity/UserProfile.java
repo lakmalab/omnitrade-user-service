@@ -11,8 +11,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.type.SqlTypes;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -33,7 +36,12 @@ public class UserProfile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id ;
+    @JdbcTypeCode(SqlTypes.CHAR)
+    @Column(name = "id", length = 36)
+    private UUID id;
+
+    @JdbcTypeCode(SqlTypes.CHAR)
+    @Column(name = "auth_user_id", length = 36)
     private UUID authUserId;
 
     @NotBlank(message = "Username is required")
@@ -47,6 +55,8 @@ public class UserProfile {
     @Email(message = "Please provide a valid email address")
     @Column(nullable = false, unique = true)
     private String email;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private UserRole role;
 
     @Column(nullable = true, unique = true)
@@ -61,11 +71,13 @@ public class UserProfile {
 
     @CreationTimestamp
     @Column(updatable = false)
-    private LocalDate joinedAt;
+    private Instant joinedAt;
 
     @UpdateTimestamp
-    private LocalDate updatedAt;
+    private Instant updatedAt;
     private Boolean phoneVerified = false;
     private Boolean emailVerified = false;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private UserStatus status;
 }
