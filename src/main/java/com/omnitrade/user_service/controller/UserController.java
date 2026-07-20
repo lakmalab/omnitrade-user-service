@@ -32,13 +32,13 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping()
     public ResponseEntity<UserResponseDTO> updateProfile (@Valid @RequestBody UpdateUserRequest request){
         UserResponseDTO response = userService.updateProfile(request);
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<UserResponseDTO>> getAllProfiles (){
         List<UserResponseDTO> response = userService.getAllProfiles();
         return ResponseEntity.ok(response);
